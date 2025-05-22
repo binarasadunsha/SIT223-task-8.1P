@@ -37,4 +37,21 @@ pipeline {
             }
         }
     }
+    post {
+    success {
+        emailext (
+            subject: "Build Successful: ${env.JOB_NAME} [#${env.BUILD_NUMBER}]",
+            body: "Good job! The build completed successfully.",
+            to: 'binarasadunsha22774@gmail.com'
+        )
+    }
+    failure {
+        emailext (
+            subject: "Build Failed: ${env.JOB_NAME} [#${env.BUILD_NUMBER}]",
+            body: "Something went wrong. Please check the build log.",
+            to: 'binarasadunsha22774@gmail.com'
+        )
+    }
+}
+
 }
